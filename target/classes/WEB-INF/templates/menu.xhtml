@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">	
+
+	<h:outputScript name="locale-primefaces.js" library="js" />
+
+	<h:form>
+		<p:menu styleClass="lateral">
+			<p:submenu label="$ Financeiro">				
+				<p:menuitem value="Novo Custo" icon="ui-icon-plus" onclick="PF('custoDialog').show()" />			
+				<p:menuitem value="Custos Pendentes" icon="ui-icon-notice" outcome="custosPendentes" />
+				<p:menuitem value="Custos Pagos" icon="ui-icon-check" outcome="custosPagos" />
+			</p:submenu>			
+		</p:menu>
+		
+	</h:form>
+	
+							
+	<p:dialog id="dialog" widgetVar="custoDialog" styleClass="dialogo" resizable="false" closable="true" header="Custo">
+		<h:form id="dialogForm">
+			<p:outputPanel id="custoDetail" >
+				<p:messages />
+				<p:panelGrid columns="2">															
+					<p:outputLabel value="Nome do custo: "/>
+					<p:inputText value="#{custo.custo.nome}" required="true" validatorMessage="Preencha o campo 'nome'." />
+						
+					<p:outputLabel value="Descrição: "/>
+					<p:inputText value="#{custo.custo.descricao}" validatorMessage="Preencha o campo 'descrição'." />
+						
+					<p:outputLabel value="Data: "/>
+					<p:calendar pattern="dd/MM/yyyy" value="#{custo.custo.data}" required="true" validatorMessage="Preencha o campo 'data'" 
+						converterMessage="A data precisa estar no formato DIA/MÊS/ANO EX: 01/01/2001." styleClass="datePicker" locale="pt" 
+						mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:calendar>
+					
+					<p:outputLabel value="Valor: "/>
+					<p:inputText value="#{custo.custo.valor}" required="true" validatorMessage="Preencha o campo 'valor'." 
+						converterMessage="O valor precisa ser um número." >
+						<f:convertNumber locale="pt_BR" maxFractionDigits="2"></f:convertNumber>
+					</p:inputText>
+						
+					<p:outputLabel value="Está pago?" rendered="#{custo.custo.id == null}" />
+					<p:selectOneRadio value="#{custo.custo.pago}" required="true" rendered="#{custo.custo.id == null}">
+						<f:selectItem itemLabel="Não" itemValue="false" />
+						<f:selectItem itemLabel="Sim" itemValue="true" />
+					</p:selectOneRadio>
+						
+					<p:commandButton value="Limpar" action="#{custo.custoNovo}" icon="ui-icon-arrowrefresh-1-w" update="@form" />							
+					<p:commandButton value="Salvar" action="#{custo.guardarCusto}" icon="ui-icon-disk" update=":tableForm dialogForm" />
+				</p:panelGrid>
+			</p:outputPanel>
+		</h:form>		
+	</p:dialog>	
+</ui:composition>
