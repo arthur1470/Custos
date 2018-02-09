@@ -8,11 +8,18 @@
 
 	<h:form>
 		<p:menu styleClass="lateral">
-			<p:submenu label="$ Financeiro">				
+			<p:submenu label="Financeiro">				
 				<p:menuitem value="Novo Custo" icon="ui-icon-plus" onclick="PF('custoDialog').show()" />			
 				<p:menuitem value="Custos Pendentes" icon="ui-icon-notice" outcome="custosPendentes" />
 				<p:menuitem value="Custos Pagos" icon="ui-icon-check" outcome="custosPagos" />
-			</p:submenu>			
+				<p:menuitem value="Receita" />				
+			</p:submenu>
+						
+			<p:submenu label="Funcionários">
+				<p:menuitem value="Cadastrar Funcionário" />
+				<p:menuitem value="Salários Pagos" />
+				<p:menuitem value="Salários Pendentes" />							
+			</p:submenu>
 		</p:menu>
 		
 	</h:form>

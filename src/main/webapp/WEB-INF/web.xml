@@ -3,6 +3,20 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
+	
+	<!-- Listenners do Spring Security -->
+    <listener>
+        <listener-class>
+			org.springframework.web.context.ContextLoaderListener
+    	</listener-class>
+    </listener>
+
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+	
+	<!--  -->
+	
 	<display-name>Custos</display-name>
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
@@ -59,5 +73,20 @@
 		<extension>woff2</extension>
 		<mime-type>application/font-woff2</mime-type>
 	</mime-mapping>
+	
+	<!-- Filtro Spring Security -->
+	
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>                     
+			org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
 	
 </web-app>
