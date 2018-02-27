@@ -1,4 +1,4 @@
-package br.com.custos.util;
+package br.com.custos.util.jsf;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

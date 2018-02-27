@@ -41,6 +41,29 @@ body {
 	padding: 0px;
 }
 
+.usuarioLogado{
+		position:absolute;
+		right: 150px;
+		top: 0px;		
+	}
+
+.deslogar{
+	
+}
+
+@media (max-width: 600px){
+	.usuarioLogado{		
+		right: 100px;
+	}
+}
+
+@media (max-width: 500px){
+	.usuarioLogado{
+		position: absolute;
+		left: -9999px;
+	}
+}
+
 /* Menu */
 .menu {
 	position: fixed;
@@ -103,3 +126,13 @@ body {
 	text-align: center;
 	width: 100%;	
 }
+
+.telaToda{
+	height: 100%;
+	background-color: black;
+}
+
+.loginForm{
+	display: inline-block;
+}
+

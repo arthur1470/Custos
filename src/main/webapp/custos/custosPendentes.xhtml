@@ -13,12 +13,12 @@
 	<h:outputStylesheet name="estilo.css" library="css"></h:outputStylesheet>
 	
 	<ui:define name="corpo">
-		<h:form id="tableForm">
+		<h:form id="frm">
 			
 			<p:dataGrid var="c" value="#{custo.custosPendentes}" columns="4" layout="grid" rows="12" paginator="true" id="custos"
 		        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} 
 		        	{NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="12,16,20"
-		        	emptyMessage="Nenhum custo encontrado.">
+		        	emptyMessage="Nenhum custo encontrado." styleClass="textoCentro">
 		        
 		        <f:facet name="header">
 		        	Custos Pendentes
@@ -50,7 +50,8 @@
 						action="#{custo.custoNovo}" update=":dialogForm" />	
 
 					
-					<h:outputText value="Valor Total = " />
+					
+					<h:outputText value="Valor Total = " />	
 					<h:outputText value="#{custo.custoTotalPendentes}" >
 						<f:convertNumber locale="pt_BR" type="currency" />
 					</h:outputText>

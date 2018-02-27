@@ -12,7 +12,7 @@ import javax.inject.Named;
 
 import br.com.custos.model.Custo;
 import br.com.custos.service.CustoService;
-import br.com.custos.util.MensagensUtil;
+import br.com.custos.util.jsf.MensagensUtil;
 
 @Named("custo")
 @SessionScoped

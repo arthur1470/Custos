@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<h:outputStylesheet name="estilo.css" library="css"></h:outputStylesheet>
+	
+	<ui:define name="title">Cadastro de Funcionário</ui:define>
+	
+	<ui:define name="corpo">
+	
+		<f:metadata>
+			<f:viewAction action="#{funcionarioBean.preparar}"></f:viewAction>
+		</f:metadata>		
+	
+		<h:form id="frm">
+			<p:panel header="Cadastro de Funcionário">
+				
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome completo: " />
+					<p:inputText value="#{funcionarioBean.funcionario.nome}" size="30" />
+					
+					<p:outputLabel value="CPF" />
+					<p:inputMask mask="999.999.999-99" value="#{funcionarioBean.funcionario.cpf}" size="14" />
+
+					<p:outputLabel value="Data de nascimento" />
+					<p:calendar locale="pt" value="#{funcionarioBean.funcionario.dataNascimento}" pattern="dd/MM/yyyy" size="10" 
+						mask="99/99/9999" maxdate="#{funcionarioBean.dataMaxima}" navigator="true" yearRange="c-40:c+10" />
+					
+					<p:outputLabel value="Cargo: " />
+					<p:selectOneMenu value="#{funcionarioBean.funcionario.cargo}">
+						<f:selectItem noSelectionOption="true" itemLabel="Selecione" />
+						<f:selectItem itemLabel="Topógrafo" itemValue="topografo" />
+						<f:selectItem itemLabel="Pintor" itemValue="pintor" />
+						<f:selectItem itemLabel="Cozinheiro" itemValue="cozinheiro" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Salário: " />
+					<p:inputText value="#{funcionarioBean.funcionario.salario.valor}" size="10" />															
+
+					<p:outputLabel value="Data de pagamento: " />
+					<p:calendar locale="pt" value="#{funcionarioBean.funcionario.salario.dataPagamento}" pattern="dd/MM/yyyy" 
+						mask="99/99/9999" size="10" />
+
+					<p:outputLabel value="Contrato" />
+					<p:calendar locale="pt" value="#{funcionarioBean.funcionario.contrato}" pattern="dd/MM/yyyy" size="10" 
+						mask="99/99/9999" />
+												
+				</p:panelGrid>
+				
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" action="#{funcionarioBean.guardar}" ajax="false" />
+				</f:facet>
+			</p:panel>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

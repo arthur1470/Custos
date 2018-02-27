@@ -8,17 +8,23 @@
 
 	<h:form>
 		<p:menu styleClass="lateral">
+			<p:submenu label="Olá, #{seguranca.nomeUsuario}">
+				<p:menuitem value="Alterar Dados" icon="ui-icon-person" />
+				<p:menuitem value="Sair" icon="ui-icon-closethick" url="/j_spring_security_logout" />
+			</p:submenu>
 			<p:submenu label="Financeiro">				
 				<p:menuitem value="Novo Custo" icon="ui-icon-plus" onclick="PF('custoDialog').show()" />			
-				<p:menuitem value="Custos Pendentes" icon="ui-icon-notice" outcome="custosPendentes" />
-				<p:menuitem value="Custos Pagos" icon="ui-icon-check" outcome="custosPagos" />
-				<p:menuitem value="Receita" />				
-			</p:submenu>
-						
+				<p:menuitem value="Custos Pendentes" icon="ui-icon-notice" outcome="/custos/custosPendentes" />
+				<p:menuitem value="Custos Pagos" icon="ui-icon-check" outcome="/custos/custosPagos" />
+				<p:menuitem value="Receita" icon="ui-icon-calculator" />				
+			</p:submenu>						
 			<p:submenu label="Funcionários">
-				<p:menuitem value="Cadastrar Funcionário" />
-				<p:menuitem value="Salários Pagos" />
-				<p:menuitem value="Salários Pendentes" />							
+				<p:menuitem value="Visualizar Funcionários" icon="ui-icon-person" />
+				<p:menuitem value="Cadastrar Funcionário" icon="ui-icon-plus" outcome="/funcionarios/cadastroFuncionario" />
+				<p:menuitem value="Salários Pendentes" icon="ui-icon-notice" />							
+				<p:menuitem value="Salários Pagos" icon="ui-icon-check" />
+			</p:submenu>
+			<p:submenu>
 			</p:submenu>
 		</p:menu>
 		
@@ -56,9 +62,17 @@
 					</p:selectOneRadio>
 						
 					<p:commandButton value="Limpar" action="#{custo.custoNovo}" icon="ui-icon-arrowrefresh-1-w" update="@form" />							
-					<p:commandButton value="Salvar" action="#{custo.guardarCusto}" icon="ui-icon-disk" update=":tableForm dialogForm" />
+					<p:commandButton value="Salvar" action="#{custo.guardarCusto}" icon="ui-icon-disk" update=":frm dialogForm" />
 				</p:panelGrid>
 			</p:outputPanel>
 		</h:form>		
-	</p:dialog>	
+	</p:dialog>
+	
+	<p:dialog>
+		<h:form>
+			<p:panelGrid>
+				
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
 </ui:composition>

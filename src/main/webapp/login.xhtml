@@ -2,21 +2,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Login</title>
 	</h:head>
 	<h:body>
-		<h:form>
-			<p:messages autoUpdate="true" id="messages" closable="true" />
-			<p:panelGrid columns="2">
-				<p:outputLabel for="login" value="Login" />
-				<p:inputText id="login" value="#{loginBean.login}" />
+		<h:outputStylesheet library="css" name="estilo.css" ></h:outputStylesheet>
+		<p:growl autoUpdate="true" id="messages" life="2000" />
+		
+		<p:dialog modal="true" visible="true" widgetVar="loginDialog" closable="false" resizable="false"
+			draggable="false" header="Login" responsive="true" id="dialog">
+			
+				<h:form id="frm" prependId="false">
+				<h:panelGrid columns="3" >
+					<p:outputLabel styleClass="ui-icon ui-icon-person" />
+					<p:outputLabel for="j_username" styleClass="ui-icon-person" value="Login" />
+					<p:inputText id="j_username" value="#{loginBean.login}" required="true" />
+					
+					<h:outputText styleClass="ui-icon ui-icon-locked" />			
+					<p:outputLabel for="j_password" value="Senha" />																					
+					<p:password id="j_password" required="true" />
+				</h:panelGrid>
 				
-				<p:outputLabel for="senha" value="Senha" />
-				<p:password id="senha" />
-			</p:panelGrid>
-		</h:form>
+				<hr />
+				
+				<p:commandButton ajax="false" value="Logar" id="logar" action="#{loginBean.doLogin}" />
+							
+				<p:blockUI block="frm" trigger="logar">
+					<p:graphicImage library="img" name="loading.gif" />
+				</p:blockUI>
+			</h:form>
+		</p:dialog>
+			
 	</h:body>
 </html>
